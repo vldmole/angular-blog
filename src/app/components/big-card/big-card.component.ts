@@ -9,6 +9,9 @@ import { Component, Input } from '@angular/core';
 export class BigCardComponent {
 
   @Input()
+  id : string = "0";
+
+  @Input()
   photoUrl: string = "./src/app/assets/Placeholder.png";
 
   @Input()
