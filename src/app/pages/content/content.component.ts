@@ -1,10 +1,10 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterModule} from '@angular/router';
 import { dataFake, NewsFake } from '../../data/datFake';
 
 @Component({
   selector: 'app-content',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './content.component.html',
   styleUrl: './content.component.css'
 })
