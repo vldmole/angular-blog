@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
+import { dataFake, NewsFake } from '../../data/datFake';
 
 @Component({
   selector: 'app-content',
@@ -8,16 +9,32 @@ import { ActivatedRoute} from '@angular/router';
   styleUrl: './content.component.css'
 })
 export class ContentComponent implements OnInit{
+  id: string | null = "0";
 
-  photoUrl: string = "https://cdn.awsli.com.br/600x700/222/222813/produto/41476891/0dd2d15e7d.jpg";
+  photoUrl: string = "photo url";
   title: string = "Minha Noticia";
-  description: string = "content__description";
+  description: string = "descrição do conteúdo";
 
   constructor(
     private router:ActivatedRoute
   ){}
 
   ngOnInit(): void {
-    this.router.paramMap.subscribe(value => console.log(value.get("id")));
+    this.router.paramMap.subscribe(value => this.id = value.get("id"));
+    this.setContent(this.id);
+  }
+
+  setContent(id: string | null)
+  {
+    console.log(id);
+     const result: NewsFake = dataFake.filter(value => value.id.toString() == id )[0];
+
+     console.log(result);
+     if(!result)
+      return;
+
+     this.photoUrl = result.photoUrl;
+     this.title = result.title;
+     this.description = result.description;
   }
 }
